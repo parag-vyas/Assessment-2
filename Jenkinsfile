@@ -12,6 +12,7 @@ pipeline {
 		steps{
                     sh 'clean mavn install' 
                     }
+	}
         stage ("Build Image") {
             steps{
                 dir("/var/lib/jenkins/workspace/Project/assess"){
@@ -48,4 +49,4 @@ pipeline {
         }
     }
 }
-}
+
