@@ -10,14 +10,14 @@ pipeline {
             }
 	stage ("Build Code") {
 		steps{
-		    sh "rm -rf *"
-	            dir("/var/lib/jenkins/workspace/Project2/assess")
+		  
+	            dir("/var/lib/jenkins/workspace/project2/assess")
                     sh 'mvn clean install' 
                     }
 	}
         stage ("Build Image") {
             steps{
-                dir("/var/lib/jenkins/workspace/Project2/assess"){
+                dir("/var/lib/jenkins/workspace/project2/assess"){
                     sh 'docker build -t 24121986/ubuntu1 .' 
                     }
                 }
@@ -34,7 +34,7 @@ pipeline {
         }
 		stage ("Deploying to kubernetes") {
 			steps {
-			dir ("/var/lib/jenkins/workspace/Project2/assess") {
+			dir ("/var/lib/jenkins/workspace/project2/assess") {
 			    sshagent(['58af5faf-0a89-4fc7-8f62-c825e50f68b5']) {
                     sh "scp -o StrictHostKeyChecking=no deploy.yml ec2-user@3.84.86.236:"
                     sh "ssh ec2-user@3.84.86.236 kubectl delete -f ."
