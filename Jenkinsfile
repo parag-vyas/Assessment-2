@@ -1,11 +1,13 @@
 pipeline {
      agent any
+	tools{
+		maven "mvn"
+	}
      
     stages{
         stage("clone the Repo") {
             steps {
-                sh "rm -rf *"
-                sh "git clone https://github.com/parag-vyas/Assessment-2.git"
+                    sh "git clone https://github.com/parag-vyas/Assessment-2.git"
                    }
             }
 	stage ("Build Code") {
