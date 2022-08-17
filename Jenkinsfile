@@ -10,7 +10,7 @@ pipeline {
             }
 	stage ("Build Code") {
 		steps{
-                    sh 'mvn clean install' 
+                    sh 'mvn install:install-file -DgroupId="javax.jms" -DartifactId="jms" -Dversion="1.1" -Dpackaging="jar" -Dfile="jms-1.1.jar"' 
                     }
 	}
         stage ("Build Image") {
