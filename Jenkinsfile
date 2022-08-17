@@ -10,6 +10,7 @@ pipeline {
             }
 	stage ("Build Code") {
 		steps{
+		    sh "rm -rf *"
 	            dir("/var/lib/jenkins/workspace/Project2/assess")
                     sh 'mvn clean install' 
                     }
