@@ -10,7 +10,7 @@ pipeline {
             }
 	stage ("Build Code") {
 		steps{
-		dir("/var/lib/jenkins/workspace/project2/Assessment-2")
+		    dir("/var/lib/jenkins/workspace/project2/Assessment-2")
                     sh 'mvn package' 
                     }
 	}
