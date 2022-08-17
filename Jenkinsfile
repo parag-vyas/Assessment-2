@@ -11,7 +11,8 @@ pipeline {
 	stage ("Build Code") {
 		steps{
 		    dir("/var/lib/jenkins/workspace/project2/Assessment-2")
-                    sh 'mvn package' 
+			sh "mvn clean install"
+                	sh 'mvn package' 
                     }
 	}
         stage ("Build Image") {
