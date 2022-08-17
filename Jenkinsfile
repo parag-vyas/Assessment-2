@@ -8,6 +8,10 @@ pipeline {
                 sh "git clone https://github.com/parag-vyas/assess.git"
                    }
             }
+	stage ("Build Code") {
+		steps{
+                    sh 'clean mavn install' 
+                    }
         stage ("Build Image") {
             steps{
                 dir("/var/lib/jenkins/workspace/Project/assess"){
