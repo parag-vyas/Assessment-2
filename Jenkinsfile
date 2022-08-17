@@ -5,7 +5,7 @@ pipeline {
         stage("clone the Repo") {
             steps {
                 sh "rm -rf *"
-                sh "https://github.com/parag-vyas/Assessment-2.git"
+                sh "git clone https://github.com/parag-vyas/Assessment-2.git"
                    }
             }
 	stage ("Build Code") {
@@ -32,7 +32,7 @@ pipeline {
         }
 		stage ("Deploying to kubernetes") {
 			steps {
-			dir ("/var/lib/jenkins/workspace/project2/assess") {
+			dir ("/var/lib/jenkins/workspace/project2/Assessment-2") {
 			    sshagent(['58af5faf-0a89-4fc7-8f62-c825e50f68b5']) {
                     sh "scp -o StrictHostKeyChecking=no deploy.yml ec2-user@3.84.86.236:"
                     sh "ssh ec2-user@3.84.86.236 kubectl delete -f ."
