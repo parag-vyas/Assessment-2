@@ -10,7 +10,7 @@ pipeline {
             }
 	stage ("Build Code") {
 		steps{
-                    sh 'clean mavn install' 
+                    sh 'mvn clean install' 
                     }
 	}
         stage ("Build Image") {
