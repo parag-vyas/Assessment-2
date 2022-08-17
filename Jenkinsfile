@@ -5,19 +5,17 @@ pipeline {
         stage("clone the Repo") {
             steps {
                 sh "rm -rf *"
-                sh "git clone https://github.com/parag-vyas/assess.git"
+                sh "https://github.com/parag-vyas/Assessment-2.git"
                    }
             }
 	stage ("Build Code") {
 		steps{
-		  
-	            dir("/var/lib/jenkins/workspace/project2/assess")
                     sh 'mvn clean install' 
                     }
 	}
         stage ("Build Image") {
             steps{
-                dir("/var/lib/jenkins/workspace/project2/assess"){
+                dir("/var/lib/jenkins/workspace/project2/Assessment-2"){
                     sh 'docker build -t 24121986/ubuntu1 .' 
                     }
                 }
