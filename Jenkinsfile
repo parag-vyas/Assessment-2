@@ -38,17 +38,13 @@ pipeline{
 
     }
 	stage('Login into minikube server and run helm chart') {
-
             steps {
-
-        sh """
-        
-         ssh ubuntu@172.31.23.198 << EOF
-               cd parag
-            helm install myfirstchart tomcat
-        exit
-        << EOF
-		
-    	}
+		sh """
+		 ssh ubuntu@172.31.23.198 << EOF
+		       cd parag
+		    helm install myfirstchart tomcat
+		exit
+		<< EOF		
+    		}
 	}
 }
