@@ -29,6 +29,32 @@ pipeline {
                 }
             }
         }
+		stage('File transfer into minikube server') {
+
+            steps {
+
+            sh 'scp -r /var/lib/jenkins/workspace/jenkins-docker/* ubuntu@172.31.23.198:/home/ubuntu/project'
+
+            }        
+
+    }
+		stage('Login into minikube server and run helm chart') {
+
+            steps {
+
+        sh """
+
+        
+
+         ssh ubuntu@172.31.23.198 << EOF
+
+               cd parag
+
+            helm install myfirstchart tomcat
+
+        exit
+
+        << EOF
 		stage ("Deploying to kubernetes") {
 			steps {
 			dir ("/var/lib/jenkins/workspace/project2/Assessment-2") {
