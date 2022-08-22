@@ -10,8 +10,6 @@ pipeline {
 
             steps {
 
-                sh "rm -rf *"
-
                 sh "git clone https://github.com/parag-vyas/assess.git"
 
                    }
@@ -22,11 +20,8 @@ pipeline {
 
             steps{
 
-                dir("/var/lib/jenkins/workspace/Project/assess"){
-
                     sh 'docker build -t 24121986/ubuntu1 .' 
 
-                    }
 
                 }
 
