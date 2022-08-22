@@ -3,7 +3,7 @@ apiVersion: apps/v1
 metadata:
   name: deploy
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: tomcat
@@ -30,11 +30,11 @@ apiVersion: v1
 metadata:
   name: service
 spec:
-  type: NodePort
+  type: LaadBalancer
   selector:
      app: tomcat
   ports:
    - name: http
      protocol: "TCP"
      port: 8080
-     targetPort: 80
+     targetPort: 8080
