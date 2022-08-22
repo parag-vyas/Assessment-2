@@ -1,50 +1,91 @@
-pipeline{
-    agent any
-	tools{
-		maven "mvn"
-	}
-	stages {
-	stage ("Build Code") {
-		steps{
-			checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: '49596370-6250-4efd-9841-62d4d23f7716', url: 'https://github.com/parag-vyas/Assessment-2.git']]])
-		    	sh "mvn clean install"
-                	sh 'mvn package' 
-                    }
-	}
-	stage ("Build Image") {
-            steps{
-                dir("/var/lib/jenkins/workspace/project2/Assessment-2"){
-                    sh 'docker build -t 24121986/ubuntu1 .' 
-                    }
-                }
-            }
-	stage ("Push the Image to Dockerhub") {
+pipeline {
+
+     agent any
+
+     
+
+    stages{
+
+        stage("clone the Repo") {
+
             steps {
-            script{
-                withCredentials([string(credentialsId: '24121986', variable: 'dockerhub')]) {
-                sh 'docker login -u 24121986 -p${dockerhub}'   
+
+                sh "rm -rf *"
+
+                sh "git clone https://github.com/parag-vyas/assess.git"
+
                    }
-                sh "docker push 24121986/ubuntu1"
-                }
+
             }
-        }
-	stage('File transfer into minikube server') {
+
+        stage ("Build Image") {
+
+            steps{
+
+                dir("/var/lib/jenkins/workspace/Project/assess"){
+
+                    sh 'docker build -t 24121986/ubuntu1 .' 
+
+                    }
+
+                }
+
+            }
+
+        stage ("Push the Image to Dockerhub") {
 
             steps {
 
-            sh 'scp -r /var/lib/jenkins/workspace/jenkins-docker/* ubuntu@172.31.23.198:/home/ubuntu/project'
+            script{
 
-            }        
+                withCredentials([string(credentialsId: '24121986', variable: 'dockerhub')]) {
+
+                sh 'docker login -u 24121986 -p${dockerhub}'   
+
+                   }
+
+                sh "docker push 24121986/ubuntu1"
+
+                }
+
+            }
+
+        }
+
+        stage ("Deploying to kubernetes") {
+
+            steps {
+
+            dir ("/var/lib/jenkins/workspace/Project/assess") {
+
+                sshagent(['58af5faf-0a89-4fc7-8f62-c825e50f68b5']) {
+
+                    sh "scp -o StrictHostKeyChecking=no deploy.yml ec2-user@54.234.28.11:"
+
+                    /** sh "ssh ec2-user@54.234.28.11 kubectl delete -f ." */                    
+
+                    script{
+
+                        try{
+
+                            sh "ssh -o StrictHostKeyChecking=no ec2-user@54.234.28.11 kubectl apply -f ."
+
+                        }catch(error){
+
+                            sh "ssh ec2-user@54.234.28.11 kubectl create -f ."
+
+                        }
+
+                        }
+
+                    }
+
+                }
+
+        }
+
+        }
 
     }
-	stage('Login into minikube server and run helm chart') {
-            steps {
-		sh """
-		 ssh ubuntu@172.31.23.198 << EOF
-		       cd parag
-		    helm install myfirstchart tomcat
-		exit
-		<< EOF		
-    		}
-	}
+
 }
