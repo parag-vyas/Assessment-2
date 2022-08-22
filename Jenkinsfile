@@ -1,9 +1,8 @@
-pipeline {
-     agent any
+pipeline{
+    agent any
 	tools{
 		maven "mvn"
 	}
-     
 	stages {
 	stage ("Build Code") {
 		steps{
@@ -12,14 +11,14 @@ pipeline {
                 	sh 'mvn package' 
                     }
 	}
-        stage ("Build Image") {
+	stage ("Build Image") {
             steps{
                 dir("/var/lib/jenkins/workspace/project2/Assessment-2"){
                     sh 'docker build -t 24121986/ubuntu1 .' 
                     }
                 }
             }
-        stage ("Push the Image to Dockerhub") {
+	stage ("Push the Image to Dockerhub") {
             steps {
             script{
                 withCredentials([string(credentialsId: '24121986', variable: 'dockerhub')]) {
@@ -29,7 +28,7 @@ pipeline {
                 }
             }
         }
-		stage('File transfer into minikube server') {
+	stage('File transfer into minikube server') {
 
             steps {
 
@@ -38,22 +37,20 @@ pipeline {
             }        
 
     }
-		stage('Login into minikube server and run helm chart') {
+	stage('Login into minikube server and run helm chart') {
 
             steps {
 
         sh """
-
         
-
          ssh ubuntu@172.31.23.198 << EOF
-
                cd parag
-
             helm install myfirstchart tomcat
-
         exit
-
         << EOF
 		
     }
+	}
+	
+	}
+}
