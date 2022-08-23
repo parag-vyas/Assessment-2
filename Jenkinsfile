@@ -37,13 +37,13 @@ pipeline {
                     sh "ssh ec2-user@54.158.62.86 kubectl"
                     sh """
 
-                     ssh ec2-user@54.158.62.86 << EOF
+                     ssh ec2-user@54.158.62.86 
 
                      helm install mychart1 tomcat
 
         exit
 
-        << EOF
+        
 
         """
                 }
