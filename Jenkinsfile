@@ -35,9 +35,17 @@ pipeline {
 			    sshagent(['58af5faf-0a89-4fc7-8f62-c825e50f68b5']) {
                     sh "scp -o StrictHostKeyChecking=no deploy.yml ec2-user@54.158.62.86:"
                     sh "ssh ec2-user@54.158.62.86 kubectl"
-                    script{
-                        helm install firstchart1 tomcat
-                    }
+                    sh """
+
+                     ssh ec2-user@54.158.62.86 << EOF
+
+                     helm install mychart1 tomcat
+
+        exit
+
+        << EOF
+
+        """
                 }
 			}
         }
