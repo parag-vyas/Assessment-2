@@ -36,12 +36,7 @@ pipeline {
                     sh "scp -o StrictHostKeyChecking=no deploy.yml ec2-user@54.158.62.86:"
                     sh "ssh ec2-user@54.158.62.86 kubectl"
                     script{
-                        try{
-                            sh "ssh ec2-user@54.158.62.86 kubectl apply -f ."
-                        }catch(error){
-                            sh "ssh ec2-user@54.158.62.86 kubectl create -f ."{
-							                                }
-                        }
+                        helm install firstchart1 tomcat
                     }
                 }
 			}
