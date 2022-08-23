@@ -16,7 +16,7 @@ spec:
        - name: tomcat
          image: 24121986/ubuntu1:latest
          ports:
-          - containerPort: 8080
+          - containerPort: 80
 
 
 
@@ -36,5 +36,5 @@ spec:
   ports:
    - name: http
      protocol: "TCP"
-     port: 8080
-     targetPort: 8080
+     port: 80
+     targetPort: 80
