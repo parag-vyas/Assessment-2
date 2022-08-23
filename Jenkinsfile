@@ -46,6 +46,10 @@ pipeline {
                 }
 			}
         }
+		Stage  (Deploying using helm)
+			steps {
+			   helm install test2 tomcat
+			}
     }
 }
 }
