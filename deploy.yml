@@ -28,7 +28,7 @@ spec:
 kind: Service
 apiVersion: v1
 metadata:
-  name: service
+  name: service1
 spec:
   type: LoadBalancer
   selector:
