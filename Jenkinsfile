@@ -39,7 +39,7 @@ pipeline {
 
                      ssh ec2-user@54.158.62.86 << EOF
 
-                     helm install mychart1 tomcat
+                     helm install mychart2 tomcat
 
         exit
 
