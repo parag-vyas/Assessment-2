@@ -8,8 +8,8 @@ pipeline {
 	stage ("Build Code") {
 		steps{
 			checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: '49596370-6250-4efd-9841-62d4d23f7716', url: 'https://github.com/parag-vyas/Assessment-2.git']]])
-		    	sh "mvn clean install"
-                	sh 'mvn package' 
+		    	sh "mvn install"
+                	sh 'mvn clean package' 
                     }
 	}
         stage ("Build Image") {
