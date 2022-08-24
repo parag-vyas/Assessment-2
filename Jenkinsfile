@@ -15,7 +15,7 @@ pipeline {
         stage ("Build Image") {
             steps{
                 dir("/var/lib/jenkins/workspace/project2/Assessment-2"){
-                    sh 'docker build -t 24121986/ubuntu1 .' 
+                    sh 'docker build -t 24121986/assessment2 .' 
                     }
                 }
             }
