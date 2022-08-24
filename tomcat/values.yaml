@@ -5,7 +5,7 @@
 replicaCount: 1
 
 image:
-  repository: 24121986/ubuntu1
+  repository: 24121986/project2
   pullPolicy: Always
   # Overrides the image tag whose default is the chart appVersion.
   tag: ""
