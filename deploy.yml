@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
        - name: tomcat
-         image: 24121986/ubuntu1:latest
+         image: 24121986/assessment2:latest
          ports:
           - containerPort: 80
 
