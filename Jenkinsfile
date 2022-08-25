@@ -37,7 +37,7 @@ pipeline {
 			steps {
 			dir ("/var/lib/jenkins/workspace/project2/Assessment-2") {
 		sshagent(['kubectl']) {
-                    sh "scp -r StrictHostKeyChecking=no tomcat ec2-user@44.206.243.38:"
+                    sh "scp -r tomcat ec2-user@44.206.243.38:"
                     sh "ssh ec2-user@44.206.243.38 kubectl"
                     sh """
 
