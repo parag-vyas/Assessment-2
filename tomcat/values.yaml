@@ -5,8 +5,8 @@
 replicaCount: 1
 
 image:
-  repository: 24121986/assessment2
-  pullPolicy: Always
+  repository: nginx
+  pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
   tag: ""
 
@@ -37,8 +37,8 @@ securityContext: {}
   # runAsUser: 1000
 
 service:
-  type: LoadBalancer 
-  port: 8080
+  type: ClusterIP
+  port: 80
 
 ingress:
   enabled: false
