@@ -40,7 +40,7 @@ pipeline {
                    
 		    sh "scp -r tomcat1 ec2-user@3.82.119.151:"	
 			
-                    sh " ssh ec2-user@3.82.119.151 helm install mychart3 tomcat"
+                    sh " ssh ec2-user@3.82.119.151 helm install mychart1 tomcat1"
                    
 
                     
