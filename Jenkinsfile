@@ -38,9 +38,9 @@ pipeline {
 			dir ("/var/lib/jenkins/workspace/project2/Assessment-2") {
 		sshagent(['kubectl']) {
                    
-		    sh "scp -r tomcat ec2-user@3.82.119.151:"	
+		    sh "scp -r tomcat ec2-user@44.205.249.190:"	
 			
-                    sh " ssh ec2-user@3.82.119.151 helm install mychart1 tomcat"
+                    sh " ssh ec2-user@44.205.249.190 helm install mychart1 tomcat"
                    
 
                     
