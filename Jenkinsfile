@@ -12,7 +12,7 @@ pipeline {
 			sh "git clone https://github.com/parag-vyas/Assessment-2.git" 
 			checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: '49596370-6250-4efd-9841-62d4d23f7716', url: 'https://github.com/parag-vyas/Assessment-2.git']]])
 		    	sh "mvn clean install"
-                	sh 'mvn package -Pproduction' 
+                	sh 'mvn clean package -Pproduction' 
                     }
 		}
 	}
@@ -41,11 +41,10 @@ pipeline {
 		    sh  "scp -r tomcat ec2-user@54.237.178.181:"	
 			
                     sh " ssh ec2-user@54.237.178.181 helm install mychart1 tomcat"
+                
                    
-
-                    
                 }
-			}
+		}
         }
     }
 }
