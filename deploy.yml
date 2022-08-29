@@ -17,14 +17,7 @@ spec:
          image: 24121986/assessment2:latest
          ports:
           - containerPort: 80
-
-
-
-
-
 ---
-
-
 kind: Service
 apiVersion: v1
 metadata:
