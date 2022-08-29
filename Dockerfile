@@ -1,4 +1,4 @@
-FROM tomcat:8-jre11
+FROM tomcat:latest
 RUN apt-get update && apt-get -y upgrade
 WORKDIR /usr/local/tomcat/webapps
 RUN mv /usr/local/tomcat/webapps.dist/* /usr/local/tomcat/webapps/
