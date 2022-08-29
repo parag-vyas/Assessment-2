@@ -38,7 +38,7 @@ pipeline {
 			dir ("/var/lib/jenkins/workspace/project2/Assessment-2") {
 		sshagent(['kubectl']) {
                    
-		    sh  "scp -v -o StrictHostKeyChecking=no tomcat ec2-user@@54.237.178.181:"	
+		    sh  "scp -v -o StrictHostKeyChecking=no tomcat ec2-user@54.237.178.181:"	
 			
                     sh " ssh ec2-user@54.237.178.181 helm install mychart1 tomcat"
                    
